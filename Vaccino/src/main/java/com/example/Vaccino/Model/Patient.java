@@ -28,4 +28,6 @@ public class Patient {
     @Column(unique = true, nullable = false)
     private String emailId;
 
+    private boolean vaccinated;
+
 }

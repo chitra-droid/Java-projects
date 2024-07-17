@@ -29,4 +29,12 @@ public class Appointment {
 
     @Enumerated(value = EnumType.STRING)
     private AppointmentStatus appointmentStatus;
+
+    @OneToOne
+    @JoinColumn
+    Patient patient;
+
+    @ManyToOne
+    @JoinColumn
+    Doctor doctor;
 }

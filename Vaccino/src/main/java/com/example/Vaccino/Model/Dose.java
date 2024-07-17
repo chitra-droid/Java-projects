@@ -27,9 +27,11 @@ public class Dose {
     @Enumerated(value = EnumType.STRING)
     private VaccineBrand vaccineBrand;
 
-    private boolean taken;
-
     @CreationTimestamp
     private Date dateOfVaccination;
+
+    @OneToOne
+    @JoinColumn
+    Patient patient;
 
 }
