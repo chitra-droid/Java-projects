@@ -4,6 +4,8 @@ package com.example.Vaccino.controller;
 import com.example.Vaccino.Model.Patient;
 import com.example.Vaccino.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,14 +16,14 @@ public class PatientController {
     PatientService patientService;
 
     @PostMapping("/add")
-    public String addPatient(@RequestBody Patient patient){
+    public ResponseEntity addPatient(@RequestBody Patient patient){
 
         try {
             patientService.addPatient(patient);
-            return "Patient registered successfully!";
+            return new ResponseEntity("Patient registered successfully!", HttpStatus.CREATED);
         }
         catch(Exception e){
-            return "Incorrect request!";
+            return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     }
 

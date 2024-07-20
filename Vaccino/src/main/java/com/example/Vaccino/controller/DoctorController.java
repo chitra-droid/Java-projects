@@ -35,4 +35,10 @@ public class DoctorController {
     public List<Doctor> getDoctor(@RequestParam Specialization specialization){
         return doctorService.getDoctor(specialization);
     }
+
+    @DeleteMapping("/delete")
+    public String DeleteDoctor(@RequestParam int id){
+        doctorService.DeleteDoctor(id);
+        return "Doctor has been deleted";
+    }
 }

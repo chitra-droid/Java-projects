@@ -49,4 +49,8 @@ public class DoctorService {
         return res;
 
     }
+
+    public void DeleteDoctor(int id) {
+        doctorRepository.deleteById(id);
+    }
 }
