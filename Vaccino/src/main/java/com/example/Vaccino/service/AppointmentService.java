@@ -1,11 +1,13 @@
 package com.example.Vaccino.service;
 
 import com.example.Vaccino.Dto.Response.AppointmentResponse;
+import com.example.Vaccino.Dto.Response.AppointmentUpdateResponse;
 import com.example.Vaccino.Dto.Response.PatientResponse;
 import com.example.Vaccino.Enum.AppointmentStatus;
 import com.example.Vaccino.Model.Appointment;
 import com.example.Vaccino.Model.Doctor;
 import com.example.Vaccino.Model.Patient;
+import com.example.Vaccino.exception.AppointmentNotFoundException;
 import com.example.Vaccino.exception.DoctorNotFoundException;
 import com.example.Vaccino.exception.PatientIsVaccinatedException;
 import com.example.Vaccino.exception.PatientNotFoundException;
@@ -15,6 +17,7 @@ import com.example.Vaccino.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -75,5 +78,26 @@ public class AppointmentService {
 
         return appointmentResponse;
 
+    }
+
+    public AppointmentUpdateResponse CancelAppointment(int id) {
+        List<Appointment> appointments = appointmentRepository.findAll();
+
+        AppointmentUpdateResponse Patientappointment = new AppointmentUpdateResponse();
+
+        for(Appointment app : appointments){
+            if(app.getPatient().getId()==id){
+                app.setAppointmentStatus(AppointmentStatus.CANCELLED);
+                appointmentRepository.delete(app);
+                Patientappointment.setAppointmentStatus(app.getAppointmentStatus());
+                Patientappointment.setAppointmentId(app.getAppointmentId());
+                Patientappointment.setDateOfAppointment(app.getDateOfAppointment());
+                Patientappointment.setPatientName(app.getPatient().getName());
+            }
+        }
+        if(Patientappointment.getAppointmentId()==null){
+            throw new AppointmentNotFoundException("No appointment exists for this id");
+        }
+        return Patientappointment;
     }
 }
