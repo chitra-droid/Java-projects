@@ -1,5 +1,6 @@
 package com.example.Vaccino.controller;
 
+import com.example.Vaccino.Dto.Response.AppointmentResponse;
 import com.example.Vaccino.Model.Appointment;
 import com.example.Vaccino.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,9 @@ public class AppointmentController {
 
     @PostMapping("/book")
     public ResponseEntity BookAppointment(@RequestParam("pId") int PatId,
-                                          @RequestParam("dId") int DocId){
+                                               @RequestParam("dId") int DocId){
         try {
-            Appointment savedAppointment = appointmentService.BookAppointment(PatId, DocId);
+            AppointmentResponse savedAppointment = appointmentService.BookAppointment(PatId, DocId);
             return new ResponseEntity(savedAppointment,HttpStatus.CREATED);
         }
         catch(Exception e){

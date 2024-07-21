@@ -1,5 +1,7 @@
 package com.example.Vaccino.service;
 
+import com.example.Vaccino.Dto.Response.AppointmentResponse;
+import com.example.Vaccino.Dto.Response.PatientResponse;
 import com.example.Vaccino.Enum.AppointmentStatus;
 import com.example.Vaccino.Model.Appointment;
 import com.example.Vaccino.Model.Doctor;
@@ -29,7 +31,7 @@ public class AppointmentService {
     DoctorRepository doctorRepository;
 
 
-    public Appointment BookAppointment(int patId, int docId) {
+    public AppointmentResponse BookAppointment(int patId, int docId) {
 
         Optional<Patient> OptionalPat = patientRepository.findById(patId);
 
@@ -56,6 +58,22 @@ public class AppointmentService {
         appointment.setPatient(patient);
         appointment.setDoctor(doctor);
 
-        return appointmentRepository.save(appointment);
+        Appointment savedappointment = appointmentRepository.save(appointment);
+        AppointmentResponse appointmentResponse = new AppointmentResponse();
+        appointmentResponse.setDateOfAppointment(savedappointment.getDateOfAppointment());
+        appointmentResponse.setAppointmentStatus(savedappointment.getAppointmentStatus());
+        appointmentResponse.setAppointmentId(savedappointment.getAppointmentId());
+        appointmentResponse.setDoctorName(savedappointment.getDoctor().getName());
+
+        Patient p = savedappointment.getPatient();
+        PatientResponse patientResponse = new PatientResponse();
+        patientResponse.setVaccinated(p.isVaccinated());
+        patientResponse.setEmailId(p.getEmailId());
+        patientResponse.setName(p.getName());
+
+        appointmentResponse.setPatientResponse(patientResponse);
+
+        return appointmentResponse;
+
     }
 }
