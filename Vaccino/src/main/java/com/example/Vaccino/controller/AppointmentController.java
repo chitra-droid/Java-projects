@@ -3,6 +3,7 @@ package com.example.Vaccino.controller;
 import com.example.Vaccino.Dto.Response.AppointmentResponse;
 import com.example.Vaccino.Dto.Response.AppointmentUpdateResponse;
 import com.example.Vaccino.Model.Appointment;
+import com.example.Vaccino.Model.Patient;
 import com.example.Vaccino.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,9 +30,9 @@ public class AppointmentController {
     }
 
     @PatchMapping("update/{id}")
-    public ResponseEntity CancelAppointment(@PathVariable("id") int id) {
+    public ResponseEntity CancelAppointmentByPatientId(@PathVariable("id") int Patientid) {
         try {
-            AppointmentUpdateResponse savedAppointment = appointmentService.CancelAppointment(id);
+            AppointmentUpdateResponse savedAppointment = appointmentService.CancelAppointment(Patientid);
             return new ResponseEntity(savedAppointment, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
