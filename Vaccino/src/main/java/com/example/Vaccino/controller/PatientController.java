@@ -48,4 +48,15 @@ public class PatientController {
         }
     }
 
+    @GetMapping("/unvaccinated")
+    public ResponseEntity getAllUnvaccinatedPatients(){
+        try {
+            List<PatientResponse> patients = patientService.getAllUnvaccinatedPatients();
+            return new ResponseEntity(patients,HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

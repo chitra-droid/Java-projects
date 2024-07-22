@@ -76,4 +76,22 @@ public class PatientService {
         }
         return malePatientResponses;
     }
+
+    public List<PatientResponse> getAllUnvaccinatedPatients() {
+        List<Patient> savedPatients = patientRepository.findAll();
+        List<PatientResponse> PR = new ArrayList<>();
+        for(Patient p : savedPatients){
+            if(!p.isVaccinated()){
+                PatientResponse patientResponse = new PatientResponse();
+                patientResponse.setName(p.getName());
+                patientResponse.setVaccinated(p.isVaccinated());
+                patientResponse.setEmailId(p.getEmailId());
+                PR.add(patientResponse);
+            }
+        }
+        if(PR.size()==0){
+            throw new RuntimeException("No Unvaccinated Patient found");
+        }
+        return PR;
+    }
 }
