@@ -1,4 +1,4 @@
-package com.example.RightRide.exception;
+package com.example.RightRide.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

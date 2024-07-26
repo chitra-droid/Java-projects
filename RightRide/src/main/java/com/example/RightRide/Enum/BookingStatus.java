@@ -1,2 +1,7 @@
-package com.example.RightRide.Enum;public enum BookingStatus {
+package com.example.RightRide.Enum;
+
+public enum BookingStatus {
+
+    CONFIRMED,
+    CANCELLED,
 }

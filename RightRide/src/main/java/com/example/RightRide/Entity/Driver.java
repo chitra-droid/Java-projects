@@ -1,10 +1,13 @@
-package com.example.RightRide.exception;
+package com.example.RightRide.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,4 +29,10 @@ public class Driver {
 
     @Column(unique = true,nullable = false)
     private long mobileNo;
+
+    @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)
+    private Cab cab;
+
+    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<>();
 }

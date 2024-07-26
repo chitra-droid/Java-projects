@@ -1,4 +1,4 @@
-package com.example.RightRide.exception;
+package com.example.RightRide.Entity;
 
 import com.example.RightRide.Enum.CabType;
 import jakarta.persistence.*;
@@ -27,5 +27,9 @@ public class Cab {
     private double farePerKm;
 
     private boolean booked;
+
+    @OneToOne
+    @JoinColumn
+    private Driver driver;
 
 }
