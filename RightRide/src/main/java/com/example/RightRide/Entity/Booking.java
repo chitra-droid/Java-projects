@@ -1,6 +1,7 @@
 package com.example.RightRide.Entity;
 
 import com.example.RightRide.Enum.BookingStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,10 +40,12 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private Customer customer;
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private Driver driver;
 
 

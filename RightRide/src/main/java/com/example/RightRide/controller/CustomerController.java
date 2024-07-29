@@ -32,8 +32,13 @@ public class CustomerController {
     }
 
     @GetMapping
-    public Customer getCustomer(@RequestParam("email") String emailId){
-     return customerService.getCustomer(emailId);
+    public ResponseEntity getCustomer(@RequestParam("email") String emailId){
+        try{
+           CustomerResponse res = customerService.getCustomer(emailId);
+           return new ResponseEntity<>(res,HttpStatus.OK);
+        }catch(Exception e){
+           return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("get-greater-than")

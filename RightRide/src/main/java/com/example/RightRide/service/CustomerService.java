@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class    CustomerService {
@@ -26,10 +27,14 @@ public class    CustomerService {
         return customerResponse;
     }
 
-    public Customer getCustomer(String emailId) {
+    public CustomerResponse getCustomer(String emailId) {
 
-        return customerRepository.findByEmailId(emailId);
-
+       Optional<Customer> customer = customerRepository.findByEmailId(emailId);
+       if(customer.isEmpty()){
+           throw new RuntimeException("Customer Doesn't exists!");
+       }
+       Customer cust = customer.get();
+       return CustomerTransformers.customerToCustomerResponse(cust);
 
     }
 

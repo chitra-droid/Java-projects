@@ -1,17 +1,16 @@
 package com.example.RightRide.Entity;
 
 import com.example.RightRide.Enum.CabType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
+@Builder
 public class Cab {
 
     @Id
@@ -30,6 +29,7 @@ public class Cab {
 
     @OneToOne
     @JoinColumn
+    @JsonIgnore
     private Driver driver;
 
 }
