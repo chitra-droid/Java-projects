@@ -6,6 +6,7 @@ import com.example.RightRide.dto.Requests.CustomerRequest;
 import com.example.RightRide.dto.Responses.CustomerResponse;
 import com.example.RightRide.repository.CustomerRepository;
 import com.example.RightRide.transformers.CustomerTransformers;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class    CustomerService {
 
-    @Autowired
-    CustomerRepository customerRepository;
+
+    private final CustomerRepository customerRepository;
 
     public CustomerResponse addCustomer(CustomerRequest customerRequest) {
         Customer customer = CustomerTransformers.customerRequestToCustomer(customerRequest);

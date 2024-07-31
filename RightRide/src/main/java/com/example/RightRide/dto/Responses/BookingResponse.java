@@ -1,8 +1,13 @@
-package com.example.RightRide.Entity;
+package com.example.RightRide.dto.Responses;
 
+import com.example.RightRide.Entity.Customer;
+import com.example.RightRide.Entity.Driver;
 import com.example.RightRide.Enum.BookingStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -12,15 +17,10 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
 @Builder
-public class Booking {
+public class BookingResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    private String bookingId;
+    private int bookingId;
 
     private String pickUp;
 
@@ -30,21 +30,11 @@ public class Booking {
 
     private double totalFare;
 
-    @CreationTimestamp
     private Date bookedAt;
 
-    @Enumerated(value = EnumType.STRING)
     private BookingStatus bookingStatus;
 
-    @ManyToOne
-    @JoinColumn
-    @JsonIgnore
-    private Customer customer;
+    private CustomerResponse customer;
 
-    @ManyToOne
-    @JoinColumn
-    @JsonIgnore
-    private Driver driver;
-
-
+    private DriverResponse driver;
 }

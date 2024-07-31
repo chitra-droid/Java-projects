@@ -5,6 +5,7 @@ import com.example.RightRide.Entity.Customer;import com.example.RightRide.Enum.G
 import com.example.RightRide.dto.Requests.CustomerRequest;
 import com.example.RightRide.dto.Responses.CustomerResponse;
 import com.example.RightRide.service.CustomerService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +15,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/customer")
+@RequiredArgsConstructor
 public class CustomerController {
 
-    @Autowired
-    CustomerService customerService;
+
+    private final CustomerService customerService;
 
     @PostMapping
     public ResponseEntity addCustomer(@RequestBody
@@ -48,7 +50,7 @@ public class CustomerController {
     }
 
 
-    @GetMapping("age/{age}")
+    @GetMapping("age-lesser-than/{age}")
     public ResponseEntity getAllByAgeLesserThan(@PathVariable("age") int age){
         try {
             List<CustomerResponse> CR = customerService.getAllByAgeLesserThan(age);

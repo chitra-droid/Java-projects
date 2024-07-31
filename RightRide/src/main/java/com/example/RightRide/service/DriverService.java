@@ -7,14 +7,16 @@ import com.example.RightRide.dto.Responses.DriverResponse;
 import com.example.RightRide.repository.DriverRepository;
 import com.example.RightRide.transformers.CabTranformers;
 import com.example.RightRide.transformers.DriverTransformers;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class DriverService {
 
-    @Autowired
-    DriverRepository driverRepository;
+
+    private final DriverRepository driverRepository;
 
     public String addDriverAndCab(DriverRequest driverRequest) {
         Driver driver = DriverTransformers.driverRequestToDriver(driverRequest);

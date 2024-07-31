@@ -13,10 +13,10 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CabRequest {
 
-    private String cabNumber;
+     String cabNumber;
 
-    private CabType cabType;
+     CabType cabType;
 
-    private double farePerKm;
+     double farePerKm;
 
 }
