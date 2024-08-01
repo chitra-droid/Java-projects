@@ -15,6 +15,8 @@ import com.example.RightRide.repository.DriverRepository;
 import com.example.RightRide.transformers.BookingTransformer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -31,6 +33,9 @@ public class BookingService {
     private final CabRepository cabRepository;
 
     private final DriverRepository driverRepository;
+
+    @Autowired
+    JavaMailSender javaMailSender;
 
 
     public BookingResponse makeBooking(BookingRequest bookingRequest) {
@@ -62,7 +67,20 @@ public class BookingService {
         customerRepository.save(customer1);
         driverRepository.save(driver);
 
+        sendEmail(savedBooking);
+
         return BookingTransformer.bookingToBookingResponse(savedBooking);
 
+    }
+
+    private void sendEmail(Booking savedBooking) {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom("chitracharan9460@gmail.com");
+        simpleMailMessage.setTo(savedBooking.getCustomer().getEmailId());
+        simpleMailMessage.setSubject("Booking Confirmed !!");
+        simpleMailMessage.setText("Congratulations "+savedBooking.getCustomer().getName()+" ,\nYour ride is booked on "
+                +savedBooking.getBookedAt()+" from "+savedBooking.getPickUp()+" to "+savedBooking.getDestination()+
+                " .\nHave a pleasent journey!!");
+        javaMailSender.send(simpleMailMessage);
     }
 }
