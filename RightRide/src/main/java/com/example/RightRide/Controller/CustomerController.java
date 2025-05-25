@@ -1,12 +1,11 @@
-package com.example.RightRide.controller;
+package com.example.RightRide.Controller;
 
 
-import com.example.RightRide.Entity.Customer;import com.example.RightRide.Enum.Gender;
-import com.example.RightRide.dto.Requests.CustomerRequest;
-import com.example.RightRide.dto.Responses.CustomerResponse;
-import com.example.RightRide.service.CustomerService;
+import com.example.RightRide.Entity.Customer;
+import com.example.RightRide.DTO.Requests.CustomerRequest;
+import com.example.RightRide.DTO.Responses.CustomerResponse;
+import com.example.RightRide.Service.CustomerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +42,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("get-greater-than")
+    @GetMapping("/get-by-age-greater")
     public List<Customer> getAllByGenderandAgeGreaterThan(@RequestParam("gender") String gender,
                                                           @RequestParam("age") int age){
        return customerService.getAllByGenderandAgeGreaterThan(gender,age);

@@ -1,9 +1,5 @@
-package com.example.RightRide.dto.Requests;
+package com.example.RightRide.DTO.Requests;
 
-import com.example.RightRide.Entity.Cab;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToOne;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -19,4 +15,5 @@ public class DriverRequest {
     int drivingLicense;
     long mobileNo;
     CabRequest cabRequest;
+    int rating;
 }

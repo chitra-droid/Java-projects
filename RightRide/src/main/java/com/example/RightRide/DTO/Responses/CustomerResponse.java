@@ -1,4 +1,4 @@
-package com.example.RightRide.dto.Responses;
+package com.example.RightRide.DTO.Responses;
 
 import com.example.RightRide.Enum.Gender;
 import lombok.*;

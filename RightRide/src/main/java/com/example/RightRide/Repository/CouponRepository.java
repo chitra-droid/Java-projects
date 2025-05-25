@@ -1,4 +1,4 @@
-package com.example.RightRide.repository;
+package com.example.RightRide.Repository;
 
 import com.example.RightRide.Entity.Coupon;
 import org.springframework.data.jpa.repository.JpaRepository;

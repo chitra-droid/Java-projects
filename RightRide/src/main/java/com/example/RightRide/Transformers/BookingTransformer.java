@@ -1,10 +1,10 @@
-package com.example.RightRide.transformers;
+package com.example.RightRide.Transformers;
 
 import com.example.RightRide.Entity.Booking;
 import com.example.RightRide.Entity.Cab;
 import com.example.RightRide.Enum.BookingStatus;
-import com.example.RightRide.dto.Requests.BookingRequest;
-import com.example.RightRide.dto.Responses.BookingResponse;
+import com.example.RightRide.DTO.Requests.BookingRequest;
+import com.example.RightRide.DTO.Responses.BookingResponse;
 
 import java.util.UUID;
 
@@ -17,7 +17,6 @@ public class BookingTransformer {
                 .pickUp(bookingRequest.getPickUp())
                 .destination(bookingRequest.getDestination())
                 .totalDistance(bookingRequest.getTotalDistance())
-                .totalFare(cab.getFarePerKm()* bookingRequest.getTotalDistance())
                 .build();
     }
 

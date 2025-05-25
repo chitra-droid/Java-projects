@@ -1,4 +1,4 @@
-package com.example.RightRide.exception;
+package com.example.RightRide.Exception;
 
 public class NoSuchEmailFound extends RuntimeException{
 

@@ -1,8 +1,8 @@
-package com.example.RightRide.transformers;
+package com.example.RightRide.Transformers;
 
 import com.example.RightRide.Entity.Customer;
-import com.example.RightRide.dto.Requests.CustomerRequest;
-import com.example.RightRide.dto.Responses.CustomerResponse;
+import com.example.RightRide.DTO.Requests.CustomerRequest;
+import com.example.RightRide.DTO.Responses.CustomerResponse;
 
 public class CustomerTransformers {
 

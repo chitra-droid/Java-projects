@@ -1,24 +1,19 @@
-package com.example.RightRide.service;
+package com.example.RightRide.Service;
 
-import com.example.RightRide.Entity.Booking;
-import com.example.RightRide.Entity.Cab;
-import com.example.RightRide.Entity.Customer;
-import com.example.RightRide.Entity.Driver;
-import com.example.RightRide.dto.Requests.BookingRequest;
-import com.example.RightRide.dto.Responses.BookingResponse;
-import com.example.RightRide.exception.NoCabAvailableException;
-import com.example.RightRide.exception.NoSuchEmailFound;
-import com.example.RightRide.repository.BookingRepository;
-import com.example.RightRide.repository.CabRepository;
-import com.example.RightRide.repository.CustomerRepository;
-import com.example.RightRide.repository.DriverRepository;
-import com.example.RightRide.transformers.BookingTransformer;
+import com.example.RightRide.Entity.*;
+import com.example.RightRide.DTO.Requests.BookingRequest;
+import com.example.RightRide.DTO.Responses.BookingResponse;
+import com.example.RightRide.Exception.NoCabAvailableException;
+import com.example.RightRide.Exception.NoSuchEmailFound;
+import com.example.RightRide.Repository.*;
+import com.example.RightRide.Transformers.BookingTransformer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,6 +32,8 @@ public class BookingService {
     @Autowired
     JavaMailSender javaMailSender;
 
+    @Autowired
+    CouponRepository CR;
 
     public BookingResponse makeBooking(BookingRequest bookingRequest) {
         Optional<Customer> customer = customerRepository.
@@ -52,7 +49,23 @@ public class BookingService {
         }
         Cab newCab = cab.get();
         newCab.setBooked(true);
+
+        List<Coupon> CL = CR.findAll();
+        Double maxDisc = 0.0;
+
+        for(Coupon c : CL){
+            if(c.getPercentageDiscount() > maxDisc){
+                maxDisc = (double) c.getPercentageDiscount();
+            }
+        }
+
         Booking booking = BookingTransformer.bookingRequestToBooking(bookingRequest,newCab);
+
+        Double Fare = newCab.getFarePerKm()*bookingRequest.getTotalDistance();
+        if(maxDisc!=0.0){
+            Fare = Fare*(100-maxDisc)/100;
+        }
+        booking.setTotalFare(Fare);
 
         Driver driver =  newCab.getDriver();
         Customer customer1 = customer.get();

@@ -1,5 +1,6 @@
 package com.example.RightRide.Entity;
 
+import com.example.RightRide.Enum.Rating;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,4 +34,7 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
+
+    @Enumerated(value = EnumType.ORDINAL)
+    private Rating rating;
 }

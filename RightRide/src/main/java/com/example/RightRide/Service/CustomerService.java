@@ -1,13 +1,11 @@
-package com.example.RightRide.service;
+package com.example.RightRide.Service;
 
 import com.example.RightRide.Entity.Customer;
-import com.example.RightRide.Enum.Gender;
-import com.example.RightRide.dto.Requests.CustomerRequest;
-import com.example.RightRide.dto.Responses.CustomerResponse;
-import com.example.RightRide.repository.CustomerRepository;
-import com.example.RightRide.transformers.CustomerTransformers;
+import com.example.RightRide.DTO.Requests.CustomerRequest;
+import com.example.RightRide.DTO.Responses.CustomerResponse;
+import com.example.RightRide.Repository.CustomerRepository;
+import com.example.RightRide.Transformers.CustomerTransformers;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

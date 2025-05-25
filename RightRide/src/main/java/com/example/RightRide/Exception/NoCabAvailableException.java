@@ -1,6 +1,4 @@
-package com.example.RightRide.exception;
-
-import org.springframework.data.jpa.repository.JpaRepository;
+package com.example.RightRide.Exception;
 
 public class NoCabAvailableException extends RuntimeException {
     public NoCabAvailableException(String m){

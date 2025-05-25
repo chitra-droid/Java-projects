@@ -1,15 +1,18 @@
-package com.example.RightRide.service;
+package com.example.RightRide.Service;
 
 import com.example.RightRide.Entity.Cab;
 import com.example.RightRide.Entity.Driver;
-import com.example.RightRide.dto.Requests.DriverRequest;
-import com.example.RightRide.dto.Responses.DriverResponse;
-import com.example.RightRide.repository.DriverRepository;
-import com.example.RightRide.transformers.CabTranformers;
-import com.example.RightRide.transformers.DriverTransformers;
+import com.example.RightRide.DTO.Requests.DriverRequest;
+import com.example.RightRide.DTO.Responses.DriverResponse;
+import com.example.RightRide.Enum.Rating;
+import com.example.RightRide.Repository.DriverRepository;
+import com.example.RightRide.Transformers.CabTranformers;
+import com.example.RightRide.Transformers.DriverTransformers;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,5 +37,17 @@ public class DriverService {
     public DriverResponse getDriver(long mobileNo) {
         Driver savedDriver = driverRepository.findByMobileNo(mobileNo);
         return DriverTransformers.driverToDriverResponse(savedDriver);
+    }
+
+    public List<DriverResponse> fetchDriverByRating(String r) {
+        List<Driver> driverList = driverRepository.findAll();
+        List<DriverResponse> Drivers = new ArrayList<>();
+        for(Driver dri : driverList){
+            if(dri.getRating().equals(r)){
+                DriverResponse DR = DriverTransformers.driverToDriverResponse(dri);
+                Drivers.add(DR);
+            }
+        }
+        return Drivers;
     }
 }

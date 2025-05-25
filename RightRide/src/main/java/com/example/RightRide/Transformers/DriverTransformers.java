@@ -1,8 +1,9 @@
-package com.example.RightRide.transformers;
+package com.example.RightRide.Transformers;
 
 import com.example.RightRide.Entity.Driver;
-import com.example.RightRide.dto.Requests.DriverRequest;
-import com.example.RightRide.dto.Responses.DriverResponse;
+import com.example.RightRide.DTO.Requests.DriverRequest;
+import com.example.RightRide.DTO.Responses.DriverResponse;
+import com.example.RightRide.Enum.Rating;
 
 public class DriverTransformers {
 
@@ -12,6 +13,7 @@ public class DriverTransformers {
                 .age(driverRequest.getAge())
                 .mobileNo(driverRequest.getMobileNo())
                 .drivingLicense(driverRequest.getDrivingLicense())
+                .rating(Rating.ZERO)
                 .build();
     }
 
@@ -20,6 +22,7 @@ public class DriverTransformers {
                 .name(driver.getName())
                 .mobileNo(driver.getMobileNo())
                 .cabResponse(CabTranformers.cabToCabResponse(driver.getCab()))
+                .rating(driver.getRating())
                 .build();
     }
 }

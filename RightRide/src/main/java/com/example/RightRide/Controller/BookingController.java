@@ -1,11 +1,9 @@
-package com.example.RightRide.controller;
+package com.example.RightRide.Controller;
 
-import com.example.RightRide.dto.Requests.BookingRequest;
-import com.example.RightRide.dto.Responses.BookingResponse;
-import com.example.RightRide.service.BookingService;
+import com.example.RightRide.DTO.Requests.BookingRequest;
+import com.example.RightRide.DTO.Responses.BookingResponse;
+import com.example.RightRide.Service.BookingService;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

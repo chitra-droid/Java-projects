@@ -1,13 +1,15 @@
-package com.example.RightRide.controller;
+package com.example.RightRide.Controller;
 
-import com.example.RightRide.dto.Requests.DriverRequest;
-import com.example.RightRide.dto.Responses.DriverResponse;
-import com.example.RightRide.service.DriverService;
+import com.example.RightRide.Entity.Driver;
+import com.example.RightRide.DTO.Requests.DriverRequest;
+import com.example.RightRide.DTO.Responses.DriverResponse;
+import com.example.RightRide.Service.DriverService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/driver")
@@ -25,6 +27,15 @@ public class DriverController {
 
     @GetMapping
     public DriverResponse getDriver(@RequestParam("mobile") long mobileNo){
-      return driverService.getDriver(mobileNo);
+
+        return driverService.getDriver(mobileNo);
     }
+
+    @GetMapping("/get-by-rating-greater-than/{rating}")
+    public List<DriverResponse> fetchDriverByRating(@PathVariable("rating") String r){
+           return driverService.fetchDriverByRating(r);
+    }
+
+
+
 }

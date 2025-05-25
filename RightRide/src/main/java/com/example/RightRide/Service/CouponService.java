@@ -1,9 +1,8 @@
-package com.example.RightRide.service;
+package com.example.RightRide.Service;
 
 import com.example.RightRide.Entity.Coupon;
-import com.example.RightRide.repository.CouponRepository;
+import com.example.RightRide.Repository.CouponRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

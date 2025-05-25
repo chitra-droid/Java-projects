@@ -1,8 +1,6 @@
-package com.example.RightRide.dto.Requests;
+package com.example.RightRide.DTO.Requests;
 
 import com.example.RightRide.Enum.CabType;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

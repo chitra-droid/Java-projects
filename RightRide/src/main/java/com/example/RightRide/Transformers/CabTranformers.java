@@ -1,8 +1,8 @@
-package com.example.RightRide.transformers;
+package com.example.RightRide.Transformers;
 
 import com.example.RightRide.Entity.Cab;
-import com.example.RightRide.dto.Requests.CabRequest;
-import com.example.RightRide.dto.Responses.CabResponse;
+import com.example.RightRide.DTO.Requests.CabRequest;
+import com.example.RightRide.DTO.Responses.CabResponse;
 
 public class CabTranformers {
 

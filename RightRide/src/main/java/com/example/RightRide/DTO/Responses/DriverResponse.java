@@ -1,5 +1,6 @@
-package com.example.RightRide.dto.Responses;
+package com.example.RightRide.DTO.Responses;
 
+import com.example.RightRide.Enum.Rating;
 import lombok.*;
 
 @AllArgsConstructor
@@ -12,4 +13,5 @@ public class DriverResponse {
     private String name;
     private long mobileNo;
     private CabResponse cabResponse;
+    private Rating rating;
 }
