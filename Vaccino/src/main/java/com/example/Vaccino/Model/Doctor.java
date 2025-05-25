@@ -19,7 +19,6 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
     private String name;
 
     private int age;
@@ -29,4 +28,18 @@ public class Doctor {
 
     @Enumerated(value = EnumType.STRING)
     private Specialization specialization;
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", specialization=" + specialization +
+                '}';
+    }
+
+
+
 }

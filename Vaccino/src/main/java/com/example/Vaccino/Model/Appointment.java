@@ -37,4 +37,16 @@ public class Appointment {
     @ManyToOne
     @JoinColumn
     Doctor doctor;
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "id=" + id +
+                ", appointmentId='" + appointmentId + '\'' +
+                ", dateOfAppointment=" + dateOfAppointment +
+                ", appointmentStatus=" + appointmentStatus +
+                ", patient=" + patient +
+                ", doctor=" + doctor +
+                '}';
+    }
 }

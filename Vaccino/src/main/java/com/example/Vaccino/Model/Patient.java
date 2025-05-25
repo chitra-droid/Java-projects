@@ -12,6 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+
 public class Patient {
 
     @Id
@@ -29,5 +30,19 @@ public class Patient {
     private String emailId;
 
     private boolean vaccinated;
+
+
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", emailId='" + emailId + '\'' +
+                ", vaccinated=" + vaccinated +
+                '}';
+    }
 
 }
